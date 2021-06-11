@@ -34,9 +34,11 @@ use App\Events\OrderStatus;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    $threads = App\Thread::paginate(15);
+    return view('welcome', compact('threads'));
 });
 
 Auth::routes();
-
+Route::resource('/thread','ThreadController');
 Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/thread', 'ThreadController@index')->name('thread.index');
