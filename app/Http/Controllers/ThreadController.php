@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class ThreadController extends Controller
 {
+    function __construct(){
+        return $this->middleware('auth')->except('index');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +28,7 @@ class ThreadController extends Controller
      */
     public function create()
     {
-        //
+        return view('thread.create');
     }
 
     /**
@@ -36,7 +39,18 @@ class ThreadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //VALIDATE
+        $this->validate($request, [
+            'subject' => 'required|min:10',
+            'type'  => 'required',
+            'thread'    => 'required|min:20'
+        ]);
+
+        // STORE
+        ccreate($request->all());
+
+        //REDIRECT
+        return back()->withMessage('Thread Created!');
     }
 
     /**
@@ -47,7 +61,7 @@ class ThreadController extends Controller
      */
     public function show(Thread $thread)
     {
-        //
+        return view('thread.single', compact('thread'));
     }
 
     /**
@@ -58,7 +72,7 @@ class ThreadController extends Controller
      */
     public function edit(Thread $thread)
     {
-        //
+        return view('thread.edit', compact('thread'));
     }
 
     /**
@@ -70,7 +84,23 @@ class ThreadController extends Controller
      */
     public function update(Request $request, Thread $thread)
     {
-        //
+        if(auth()->user()->id !== intval($thread->user_id)){
+            abort(401, "unauthorized");
+        }
+
+        //VALIDATE
+        $this->validate($request, [
+            'subject' => 'required|min:5',
+            'type'  => 'required',
+            'thread'    => 'required|min:10',
+            'g-recaptcha-response' => 'required|captcha'
+        ]);
+
+        // STORE
+        $thread->update($request->all());
+
+        //REDIRECT
+        return redirect()->route('thread.show', $thread->id)->withMessage('Thread Updated!');
     }
 
     /**
@@ -81,6 +111,12 @@ class ThreadController extends Controller
      */
     public function destroy(Thread $thread)
     {
-        //
+        if(auth()->user()->id !== $thread->user_id){
+            abort(401, "unauthorized");
+        }
+
+        $thread->delete();
+
+        return redirect()->route('thread.index')->withMessage('Thread Deleted!');
     }
 }

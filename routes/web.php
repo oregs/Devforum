@@ -41,4 +41,11 @@ Route::get('/', function () {
 Auth::routes();
 Route::resource('/thread','ThreadController');
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('comment', 'CommentController', ['only' =>  ['store', 'update', 'destroy']]);
+
+Route::post('comment/create/{thread}', 'CommentController@addThreadComment')->name('threadComment.store');
+
+
+
 // Route::get('/thread', 'ThreadController@index')->name('thread.index');
