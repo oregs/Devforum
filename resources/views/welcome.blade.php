@@ -8,8 +8,9 @@
             <p><a href="#" class="btn btn-primary btn-lg">Learn More</a></p>
         </div>
     </div>
-@endsection
 
+@endsection
+@section('heading', 'Threads')
 @section('content')
     @include('thread.partials.thread-list')
 @endsection

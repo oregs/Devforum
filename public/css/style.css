@@ -90,3 +90,19 @@ a.badge:focus {
         max-width: 1320px !important;
     }
   }
+
+  .btn-group-xs > .btn, .btn-xs {
+    padding: .25rem .4rem;
+    font-size: .800rem;
+    line-height: .5;
+    border-radius: .2rem;
+  }
+
+  .pull-right {
+    float: right;
+}
+
+.pull-left {
+    float: left;
+}
+
