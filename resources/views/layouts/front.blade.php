@@ -6,15 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link href="{{ asset('css/bootswatch.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" /> --}}
+    {{-- <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" /> --}}
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" />
     {!! NoCaptcha::renderJs() !!}
-    
-</head>
-<style>
 
-</style>
+</head>
 <body>
 
     @include('layouts.partials.navbar')
@@ -41,7 +39,9 @@
     </div>
 </div>
 
-<script src="{{ asset('js/bootstrap-3-1-1.min.js') }}"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="{{ asset('js/jquery-1-11-1.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap-3-3-4.min.js') }}"></script>
+
+ @stack('scripts')
 </body>
 </html>

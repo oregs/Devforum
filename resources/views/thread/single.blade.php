@@ -35,7 +35,7 @@
             <div class="actions">
                 {{-- <a href="{{ route('thread.edit', $thread->id) }}" class="btn btn-info btn-xs">Edit</a> --}}
 
-                <a class="btn btn-primary btn-xs" data-toggle="modal" href="#{{ $comment->id }}">Edit</a>
+                <a class="btn btn-primary btn-xs testU" data-toggle="modal" href="#{{ $comment->id }}">Edit</a>
                 <div class="modal fade" id="{{ $comment->id }}">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -96,4 +96,15 @@
         </form>
     </div>
 
+    
 @endsection
+@push('scripts')
+<script>
+
+    $(document).on('click', '.testU', function(){
+        console.log('Yes');
+        $('#1').modal('show');
+    });
+
+</script>
+@endpush
