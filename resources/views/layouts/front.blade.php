@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link href="{{ asset('css/bootswatch.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    {{-- <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" /> --}}
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
 </head>
-<style> 
+<style>
 
 </style>
 <body>
@@ -25,12 +25,12 @@
             <div class="col-md-9">
                 <div class="row">
                     <div class="col-md-4"><h4 class="main-content-heading">@yield('heading')</h4></div>
-                    <div class="col-md-offset-6 col-md-2">
+                    <div class="col-md-2 offset-6 ">
                         <a class="btn btn-primary" href="{{ route('thread.create') }}">Create Thread</a>
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
     </div>
 
     <div class="row">
