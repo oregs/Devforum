@@ -8,9 +8,11 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-import Vuetify from '../plugins/vuetify'
+// import Vuetify from '../plugins/vuetify'
 
-import store from './store'
+// import store from './store'
+
+// import notification from './components/Notification.vue'
 
 /**
  * The following block of code may be used to automatically register your
@@ -26,6 +28,7 @@ import store from './store'
 Vue.component('login-form', require('./components/LoginForm.vue').default);
 Vue.component('app-container', require('./components/appContainer.vue').default);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('notification', require('./components/Notification.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -33,8 +36,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('')
+
 const app = new Vue({
-    vuetify:Vuetify,
-    store,
-    el: '#app'
+    el: '#app',
+    // notification
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Comment;
 use App\Thread;
 use Illuminate\Http\Request;
+use App\Notifications\RepliedToThread;
 
 class CommentController extends Controller
 {
@@ -22,6 +23,8 @@ class CommentController extends Controller
 
         $thread->comments()->save($comment);
 
+        $thread->user->notify(new RepliedToThread($thread));
+
         return back()->withMessage('Comment created!');
     }
 
@@ -34,7 +37,16 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+        if(intval($comment->user_id) !== auth()->user()->id){
+            abort('404');
+        }
+
+        $this->validate($request, [
+            'body' => 'required'
+        ]);
+
+        $comment->update($request->all());
+        return back()->withMessage('updated');
     }
 
     /**
@@ -45,6 +57,11 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+        if(intval($comment->user_id) !== auth()->user()->id){
+            abort('404');
+        }
+
+        $comment->delete();
+        return back()->withMessage('Deleted');
     }
 }

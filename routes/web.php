@@ -46,6 +46,10 @@ Route::resource('comment', 'CommentController', ['only' =>  ['store', 'update', 
 
 Route::post('comment/create/{thread}', 'CommentController@addThreadComment')->name('threadComment.store');
 
+Route::get('/markAsRead', function(){
+    auth()->user()->unreadNotifications->markAsRead();
+});
+
 
 
 // Route::get('/thread', 'ThreadController@index')->name('thread.index');

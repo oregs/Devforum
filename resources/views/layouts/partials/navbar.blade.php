@@ -43,6 +43,22 @@
                             </form>
                         </div>
                     </li>
+                    <notification :userid="{{ auth()->id() }}" :unreads="{{ auth()->user()->unreadNotifications }}"></notification>
+                    {{-- <li class="nav-item dropdown" id="markAsRead" onclick="markNotificationAsRead('{{ count(auth()->user()->unreadNotifications) }}')">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <span class="glyphicon glyphicon-globe"></span> Notification <span class="badge">{{ count(auth()->user()->unreadNotifications) }}</span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                @forelse (auth()->user()->unreadNotifications as $notification)
+                                    @include('layouts.partials.notification.'.snake_case(class_basename($notification->type)))
+                                    @empty
+                                    <a href="#">No unread Notification</a>
+                                @endforelse
+                            </li>
+                        </ul>
+                    </li> --}}
                 @endguest
             </ul>
         </div>
